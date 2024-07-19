@@ -9,12 +9,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
+    
     protected $fillable = [
         'title',
         'body',
+        'category_id'
     ];
+    
     use HasFactory;
-    public function getPaginateByLimit(int $limit_count = 3){
-    return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    
+    public function getPaginateByLimit(int $limit_count = 3)
+    {
+    return $this::with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
