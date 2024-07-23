@@ -1,9 +1,15 @@
 <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <x-app-layout>
     <head>
         <meta charset="utf-8">
         <title>Blog</title>
     </head>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Index') }}
+        </h2>
+    </x-slot>
     <body>
         <h1>Blog Name</h1>
         <form action="/posts" method="POST">
@@ -32,4 +38,5 @@
             [<a href="/">back</a>]
         </div>
     </body>
+    </x-app-layout>
 </html>
